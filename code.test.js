@@ -1,4 +1,3 @@
-// Import the function that checks for graph isomorphism
 const {are_isomorphic, Graph} = require('./code.js'); // Replace with the actual path to your function
 function runTest(testName, actual, expected) {
     if (JSON.stringify(actual) === JSON.stringify(expected)) {
