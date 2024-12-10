@@ -1,4 +1,4 @@
-const {are_isomorphic, Graph} = require('./code.js'); 
+const {are_isomorphic} = require('./code.js'); 
 function runTest(testName, actual, expected) {
     if (JSON.stringify(actual) === JSON.stringify(expected)) {
         console.log(`✅ ${testName}: Passed`);
@@ -14,16 +14,16 @@ console.log("Running static tests...\n");
 // Test 1: Simple isomorphic graphs
 runTest(
     "Test 1: Simple isomorphic graphs",
-    are_isomorphic(new Graph({
+    are_isomorphic({
             0: [1, 2],
             1: [0, 2],
             2: [0, 1]
-        }),
-        new Graph({
+        },
+        {
             0: [1, 2],
             1: [0, 2],
             2: [0, 1]
-        })
+        }
     ),
     true
 );
@@ -31,18 +31,18 @@ runTest(
 // Test 2: Isomorphic with different labeling
 runTest(
     "Test 2: Isomorphic with different labeling",
-    are_isomorphic(new Graph({
+    are_isomorphic({
             0: [1, 2],
             1: [0, 3],
             2: [0, 3],
             3: [1, 2],
-            }), 
-        new Graph({
+            }, 
+        {
             a: ["b", "c"],
             b: ["a", "d"],
             c: ["a", "d"],
             d: ["b", "c"]
-            })
+            }
         ),
     true
 );
@@ -51,15 +51,15 @@ runTest(
 runTest(
     "Test 3: Non-isomorphic (different number of nodes)",
     are_isomorphic(
-        new Graph({
+        {
             0: [1],
             1: [0]
-        }),
-        new Graph({
+        },
+        {
             0: [1, 2],
             1: [0],
             2: [0]
-        })
+        }
     ),
     false
 );
@@ -68,16 +68,16 @@ runTest(
 runTest(
     "Test 4: Non-isomorphic (different connectivity)",
     are_isomorphic(
-        new Graph({
+        {
             0: [1, 2],
             1: [0, 2],
             2: [0, 1]
-        }),
-        new Graph({
+        },
+        {
             0: [1, 2],
             1: [0],
             2: [0]
-        })
+        }
     ),
     false
 );
@@ -85,7 +85,7 @@ runTest(
 // Test 5: Empty graphs
 runTest(
     "Test 5: Empty graphs",
-    are_isomorphic(new Graph({}), new Graph({})),
+    are_isomorphic({}, {}),
     true
 );
 
@@ -93,8 +93,8 @@ runTest(
 runTest(
     "Test 6: Single node graphs",
     are_isomorphic(
-        new Graph({ 0: [] }),
-        new Graph({ a: [] })
+        { 0: [] },
+        { a: [] }
     ),
     true
 );
@@ -103,8 +103,8 @@ runTest(
 runTest(
     "Test 7: One graph empty, one not",
     are_isomorphic(
-        new Graph({}),
-        new Graph({ 0: [1], 1: [0] })
+        {},
+        { 0: [1], 1: [0] }
     ),
     false
 );
