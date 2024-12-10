@@ -1,4 +1,4 @@
-const {are_isomorphic, Graph} = require('./code.js'); // Replace with the actual path to your function
+const {are_isomorphic, Graph} = require('./code.js'); 
 function runTest(testName, actual, expected) {
     if (JSON.stringify(actual) === JSON.stringify(expected)) {
         console.log(`✅ ${testName}: Passed`);
